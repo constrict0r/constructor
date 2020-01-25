@@ -30,9 +30,9 @@ group:
  - disk
 
 user_skeleton:
- - item_path: https://github.com/constrict0r/home
+ - item_path: https://gitlab.com/constrict0r/home
    item_expand: false
 
 user_tasks:
- - item_path: https://is.gd/uE0TTp
+ - item_path: https://is.gd/vVCfKI
    item_expand: false
