@@ -1,8 +1,0 @@
----
-- name: Prepare
-  hosts: all
-
-  tasks:
-  - name: Ghost task to pass gitlab-ci linter bug.
-    debug:
-      msg: 'Cleaning up ...'
