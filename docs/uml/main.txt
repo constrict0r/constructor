@@ -1,0 +1,28 @@
+@startuml
+'Use plantuml to view this file as an image: http://plantuml.com'
+
+skinparam monochrome true
+
+start
+
+:Upgrade system;
+
+:Process apt sources;
+
+:Process apt packages;
+
+:Process npm packages;
+
+:Process pip packages;
+
+:Process system config;
+
+:Process services;
+
+:Process users;
+
+:Run custom tasks;
+
+end
+
+@enduml

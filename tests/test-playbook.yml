@@ -1,0 +1,293 @@
+---
+# Constructor tests, from root folder run: ./testme.sh.
+
+- name: Setup Debian systems - tests.
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+  - name: Requirements setup.
+    debug:
+      msg:
+        - '__________________________________________________________________'
+        - 'Setting up requirements.'
+        - '__________________________________________________________________'
+
+  - name: Download example-configuration.yml file.
+    get_url:
+      url: https://is.gd/sjn8du
+      dest: /tmp/example-configuration.yml
+      force: true
+
+  - name: Download example-tasks.yml file.
+    get_url:
+      url: https://is.gd/vVCfKI
+      dest: /tmp/example-tasks.yml
+      force: true
+
+  - name: Test with null.
+    debug:
+      msg:
+        - '__________________________________________________________________'
+        - 'Testing with null.'
+        - ' ,xXXXXx'
+        - ',XXXXXXXX'
+        - 'XXXXXXXXXX'
+        - '````XX```'
+        - '    XX'
+        - '    XX'
+        - '    XX'
+        - '__________________________________________________________________'
+
+  - name: Run Debian configuration with null.
+    import_role:
+      name: constrict0r.constructor
+    vars:
+      upgrade: null
+      repositories: null
+      packages: null
+      packages_npm: null
+      packages_pip: null
+      system_skeleton: null
+      services: null
+      users: null
+      password: null
+      group: null
+      user_skeleton: null
+      user_tasks: null
+      configuration: null
+
+  - name: Test with none.
+    debug:
+      msg:
+        - '__________________________________________________________________'
+        - 'Testing with none.'
+        - '   __.......__'
+        - ' .`           `.'
+        - ':               :'
+        - ':               :'
+        - ' `.._________..`'
+        - '      :   :'
+        - '      :   :'
+        - '      :   :'
+        - '      `...`'
+        - '__________________________________________________________________'
+
+  - name: Run Debian configuration with none.
+    import_role:
+      name: constrict0r.constructor
+    vars:
+      upgrade:
+      repositories:
+      packages:
+      packages_npm:
+      packages_pip:
+      system_skeleton:
+      services:
+      users:
+      group:
+      password:
+      user_skeleton:
+      user_tasks:
+      configuration:
+
+  - name: Test with undefined.
+    debug:
+      msg:
+        - '__________________________________________________________________'
+        - 'Testing with undefined.'
+        - '         ___..._'
+        - '    _,--`       ``-.'
+        - '  ,`.  .            \'
+        - ',/:. .     .       .'
+        - '|;..  .      _..--'
+        - '`--:...-,-```\'
+        - '        |:.  `.'
+        - '        l;.   l'
+        - '        `|:.   |'
+        - '         |:.   `.,'
+        - '        .l;.    j, ,'
+        - '     `.\`;:.   //,/'
+        - '      .\)`;,|\`/('
+        - '       ` `    `(,'
+        - '__________________________________________________________________'
+
+  - name: Run Debian configuration with undefined.
+    import_role:
+      name: constrict0r.constructor
+    vars:
+      upgrade: "{{ undefined_variable }}"
+      repositories: "{{ undefined_variable }}"
+      packages: "{{ undefined_variable }}"
+      packages_npm: "{{ undefined_variable }}"
+      packages_pip: "{{ undefined_variable }}"
+      system_skeleton: "{{ undefined_variable }}"
+      services: "{{ undefined_variable }}"
+      users: "{{ undefined_variable }}"
+      group: "{{ undefined_variable }}"
+      password: "{{ undefined_variable }}"
+      user_skeleton: "{{ undefined_variable }}"
+      user_tasks: "{{ undefined_variable }}"
+      configuration: "{{ undefined_variable }}"
+
+  - name: Test with empty.
+    debug:
+      msg:
+        - '__________________________________________________________________'
+        - 'Testing with empty.'
+        - '        __....._' 
+        - '     .``         ``' 
+        - '   ."               `'  
+        - '  .                   ' 
+        - ' .       __...__       '
+        - '. _.--```       ```--._ '
+        - ':`                     `'
+        - ' `-.__    :    :   __.-`'
+        - '      ```-:    :-```' 
+        - '         J     '
+        - '         :     '
+        - '        J       '
+        - '        :       '
+        - '        `._____.'
+        - '__________________________________________________________________'
+
+  - name: Run Debian configuration with empty.
+    import_role:
+      name: constrict0r.constructor
+    vars:
+      upgrade: ''
+      repositories: ''
+      packages: ''
+      packages_npm: ''
+      packages_pip: ''
+      system_skeleton: ''
+      services: ''
+      users: ''
+      group: ''
+      password: ''
+      user_skeleton: ''
+      user_tasks: ''
+      configuration: ''
+
+  - name: Test with non-empty.
+    debug:
+      msg:
+        - '__________________________________________________________________'
+        - 'Testing with NON-empty.'
+        - '        __....._'
+        - '     .`` _  o    ``'
+        - '   ." O (_)     () o`'
+        - '  .           O        '
+        - ' . ()   o__...__    O   '
+        - '. _.--```       ```--._ '
+        - ':`                     `'
+        - ' `-.__    :    :   __.-`'
+        - '      ```-:    :-```'
+        - '         J     '
+        - '         :     '
+        - '        J       '
+        - '        :       '
+        - '        `._____.'
+        - '__________________________________________________________________'
+
+  - name: Run Debian configuration with non-empty repository_path.
+    import_role:
+      name: constrict0r.constructor
+    vars:
+      upgrade: False
+      repositories:
+        - name: backports
+          repo: 'deb http://http.debian.net/debian stretch-backports main'
+      packages: [jed]
+      packages_npm: [uglify-js]
+      packages_pip: [numpy]
+      users: [mary]
+      group: [disk]
+      password: 4321
+      user_skeleton: https://github.com/constrict0r/home
+      user_tasks: /tmp/example-tasks.yml
+      configuration:
+        - item_path: /tmp/example-configuration.yml
+          item_expand: true
+
+  - name: Verify jed package installed.
+    file:
+      path: /usr/bin/jed
+
+  - name: Verify nginx package installed.
+    file:
+      path: /usr/sbin/nginx
+
+  - name: Verify /home/mary directory status.
+    stat:
+      path: /home/mary
+    register: stat_result
+    failed_when:
+      - stat_result.stat.isdir is not defined or not stat_result.stat.isdir
+
+  - name: Verify /home/mary/.vimrc
+    stat:
+      path: /home/mary/.vimrc
+    register: stat_result
+    failed_when:
+      - stat_result.stat.isreg is not defined or not stat_result.stat.isreg
+
+  - name: Verify node-red package installed.
+    command: npm list -g
+    register: npm_list_result
+    failed_when: "'red' not in npm_list_result.stdout"
+
+  - name: Verify whisper package installed.
+    command: python3 -m pip list --format=columns
+    register: pip_list_result
+    failed_when: "'whisper' not in pip_list_result.stdout"
+
+  - name: Test with non-empty - configuration by URL.
+    debug:
+      msg:
+        - '------------------------------------------------------------------'
+        - 'Testing with non-empty - configuration by URL ...'
+        - '      ----------'
+        - '    /  (_)_      \'
+        - '  /)     (_) (_)  \'
+        - ' |                 |'
+        - '| _   (_)   _   (_) |'
+        - '|(_)  _  (_) _   (_)|'
+        - '|___(_)_____(_)_____|'
+        - ' |||||||||||||||||||'
+        - '        |   |'
+        - '        |   |'
+        - '        |   |'
+        - '        |___|'
+        - '------------------------------------------------------------------'
+
+  - name: Run Debian configuration passing configuration by URL.
+    import_role:
+      name: constrict0r.constructor
+    vars:
+      upgrade:
+      repositories:
+      packages:
+      packages_npm:
+      packages_pip:
+      users:
+      group:
+      password:
+      user_skeleton:
+      user_tasks:
+      configuration:
+        - item_path: https://is.gd/sjn8du
+          item_expand: true
+    failed_when: unified is variable_empty
+
+# Cleanup files.
+  - name: Cleanup /tmp/example-configuration.yml file.
+    file:
+      path: /tmp/example-configuration.yml
+      state: absent
+
+  - name: Cleanup /tmp/example-tasks.yml file.
+    file:
+      path: /tmp/example-tasks.yml
+      state: absent

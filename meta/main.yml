@@ -1,0 +1,42 @@
+---
+galaxy_info:
+  author: constrict0r
+  description: Setup Debian systems.
+  company: Amanita.
+
+  license: MIT.
+
+  min_ansible_version: 2.8
+
+  platforms:
+    - name: Debian
+      versions:
+        - stretch
+        - buster
+
+    - name: Ubuntu
+      versions:
+        - xenial
+
+  galaxy_tags:
+    - auto
+    - autodebian
+    - apt
+    - debian
+    - devops
+    - doombots
+    - linux
+    - ubuntu
+
+dependencies:
+  - role: constrict0r.upgrade
+  - role: constrict0r.sourcez
+  - role: constrict0r.aptitude
+  - role: constrict0r.jsnode
+  - role: constrict0r.pyp
+  - role: constrict0r.sysconfig
+  - role: constrict0r.servicez
+  - role: constrict0r.users
+  - role: constrict0r.groups
+  - role: constrict0r.userconfig
+  - role: constrict0r.task

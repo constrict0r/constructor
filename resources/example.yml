@@ -1,0 +1,38 @@
+---
+# Example configuration.
+
+upgrade: false
+
+repositories: []
+
+packages:
+ - nginx
+
+packages_npm:
+ - node-red
+
+packages_pip:
+ - whisper
+
+services:
+ - nginx
+
+system_skeleton:
+ - item_path: https://gitlab.com/huertico/server
+   item_expand: false
+
+users:
+ - mary
+
+password: 4321
+
+group:
+ - disk
+
+user_skeleton:
+ - item_path: https://github.com/constrict0r/home
+   item_expand: false
+
+user_tasks:
+ - item_path: https://is.gd/uE0TTp
+   item_expand: false
