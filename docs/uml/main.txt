@@ -11,7 +11,7 @@ start
 
 :Process apt packages;
 
-:Process npm packages;
+:Process js packages;
 
 :Process pip packages;
 

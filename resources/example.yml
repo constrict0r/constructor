@@ -8,7 +8,7 @@ repositories: []
 packages:
  - nginx
 
-packages_npm:
+packages_js:
  - node-red
 
 packages_pip:

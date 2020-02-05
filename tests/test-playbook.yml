@@ -47,7 +47,7 @@
       upgrade: null
       repositories: null
       packages: null
-      packages_npm: null
+      packages_js: null
       packages_pip: null
       system_skeleton: null
       services: null
@@ -81,7 +81,7 @@
       upgrade:
       repositories:
       packages:
-      packages_npm:
+      packages_js:
       packages_pip:
       system_skeleton:
       services:
@@ -120,7 +120,7 @@
       upgrade: "{{ undefined_variable }}"
       repositories: "{{ undefined_variable }}"
       packages: "{{ undefined_variable }}"
-      packages_npm: "{{ undefined_variable }}"
+      packages_js: "{{ undefined_variable }}"
       packages_pip: "{{ undefined_variable }}"
       system_skeleton: "{{ undefined_variable }}"
       services: "{{ undefined_variable }}"
@@ -159,7 +159,7 @@
       upgrade: ''
       repositories: ''
       packages: ''
-      packages_npm: ''
+      packages_js: ''
       packages_pip: ''
       system_skeleton: ''
       services: ''
@@ -200,7 +200,7 @@
         - name: backports
           repo: 'deb http://http.debian.net/debian stretch-backports main'
       packages: [jed]
-      packages_npm: [uglify-js]
+      packages_js: [uglify-js]
       packages_pip: [numpy]
       users: [mary]
       group: [disk]
@@ -234,9 +234,10 @@
       - stat_result.stat.isreg is not defined or not stat_result.stat.isreg
 
   - name: Verify node-red package installed.
-    command: npm list -g
-    register: npm_list_result
-    failed_when: "'red' not in npm_list_result.stdout"
+    command: yarn global list
+    register: yarn_list_result
+    become: true
+    failed_when: "'red' not in yarn_list_result.stdout"
 
   - name: Verify whisper package installed.
     command: python3 -m pip list --format=columns
@@ -269,7 +270,7 @@
       upgrade:
       repositories:
       packages:
-      packages_npm:
+      packages_js:
       packages_pip:
       users:
       group:
