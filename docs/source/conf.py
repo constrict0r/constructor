@@ -42,7 +42,7 @@ gitlab_base_url = "https://gitlab.com/"
 gitlab_url = gitlab_base_url + author + "/" + project
 gitlab_badge = gitlab_url + "/badges/master/pipeline.svg\n   :alt: pipeline"
 gitlab_ci_url = gitlab_url + "/pipelines"
-gitlab_ci_link = "`Gitlab CI <" + gitlab_ci_url + ">`_."
+gitlab_ci_link = "`Glab CI <" + gitlab_ci_url + ">`_."
 gitlab_link = "`Gitlab <" + gitlab_url + ">`_."
 
 travis_base_url = "https://travis-ci.com/"
