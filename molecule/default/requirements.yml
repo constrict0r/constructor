@@ -1,2 +1,12 @@
 ---
-- role: constrict0r.unify
+- role: constrict0r.upgrade
+- role: constrict0r.sourcez
+- role: constrict0r.aptitude
+- role: constrict0r.jsnode
+- role: constrict0r.pyp
+- role: constrict0r.sysconfig
+- role: constrict0r.servicez
+- role: constrict0r.users
+- role: constrict0r.groups
+- role: constrict0r.userconfig
+- role: constrict0r.task
