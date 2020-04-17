@@ -15,4 +15,4 @@ molecule:
     - pip3 install ansible flake8 molecule[docker]
   script:
     - molecule test
-  timeout: 50m
+  timeout: 1h 30m
