@@ -31,7 +31,7 @@
       changed_when: false
 
   roles:
-    - role: task
+    - role: constructor
       configuration: https://is.gd/2iOUfm
 
   post_tasks:
